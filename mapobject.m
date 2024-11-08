@@ -117,7 +117,7 @@ for N= 1:Nsplit
     imageArray1=Screen('GetImage', win, [], 'drawBuffer');
     objectimage1(N).imagearray=rgb2gray(imageArray1);
     Screen('DrawingFinished', win);
-    % 회전
+    % %rotate
     % theta=mod(theta+0.1, 360);
     % rotatev=rotatev+0.01*[ sin((pi/180)*theta) sin((pi/180)*2*theta) sin((pi/180)*theta/5) ];
     % rotatev=rotatev/sqrt(sum(rotatev.^2));
@@ -288,14 +288,14 @@ for i=1:10
     [row, col] = find(correlationMatrix ==  top10(i));
     disp([row,col])
 end
-% heatmap 그리기
+% heatmap 
 figure('Position', screenSize);
 h = heatmap(1:Nsplit-1, 1:Nsplit-1, correlationMatrix);
 title(sprintf('Correlation Heatmap between object 1 %s and object 2 %s',objectname1,objectname2));
 colormap(h, slanCM('bwr'));
-h.XLabel = objectname2;%축,j
+h.XLabel = objectname2;%axis,j
 h.YLabel = objectname1;
-h.ColorbarVisible = 'on'; % 컬러바
+h.ColorbarVisible = 'on'; 
 h.CellLabelFormat = '%0.4f';
 filename = sprintf('(light directly coming from upfront) reshaped heatmap of correlation between %s and %s.png',objectname1,objectname2);
 saveas(gcf, fullfile(save_path, filename));
